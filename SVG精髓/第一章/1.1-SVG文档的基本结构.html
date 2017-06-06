@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.face{
+			stroke: black;
+			fill: none;
+		}
+
+		.eye{
+			stroke: black;
+			fill: #339933;
+		}
+
+		#whiskers line{
+			stroke: black;
+		}
+
+		.name{
+			font-family: sans-serif;
+			font-size: 14pt;
+		}
+	</style>
+</head>
+<body>
+	<svg width="140" height="170" xmls="http://www.w3.org/2000/svg">
+		<title>Cat</title>
+		<desc>Stick Figure of a cat</desc>
+		
+		<!-- 脸 -->
+		<circle class="face" cx="70" cy="95" r="50"></circle>
+
+		<!-- 眼睛 -->
+		<circle class="eye" cx="55" cy="80" r="5"></circle>
+		<circle class="eye" cx="85" cy="80" r="5"></circle>
+
+		<!-- 胡须 -->
+		<g id="whiskers">
+			<line x1="75" y1="95" x2="135" y2="85" />
+			<line x1="75" y1="95" x2="135" y2="105" />
+		</g>
+		<use xlink:href="#whiskers" transform="scale(-1,1) translate(-140,0)" />
+
+		<!-- 耳朵 -->
+		<polyline points="108 62, 90 10, 70 45, 50 10, 32 62" fill="none" stroke="black"/>
+
+		<!-- 嘴 -->
+		<polyline points="35 110, 45 120, 95 120, 105 110" fill="none" stroke="black"/>
+
+		<!-- 鼻子 -->
+		<path d="M 75 90 L 65 90 A 5 10 0 0 0 75 90" stroke="black" fill="#ffcccc"/>
+
+		<!-- 名字 -->
+		<text class="name" x="55" y="165" fill="black" stroke="none">Cat</text>
+	</svg>
+</body>
+</html>
