@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<svg width="1200" height="960" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+		<!-- 要移动的三角形路径 -->
+		<path id="cubicCurve" d="M 50 125, C 100 25 150 225 200 125" stroke="skyblue" fill="none"/>
+
+		<!-- 三角形会沿着运动路径移动，它通过在原点上方垂直方向上与三角形底边中心水平对齐的定义方式 -->
+		<!-- <path d="M -10 -3, L 10 -3, L 0 -25 Z" stroke="red" fill="yellow">
+			<animateMotion path="M 50 125, C 100 25 150 225 200 125" rotate="auto" dur="3s" fill="freeze" repeatCount="indefinite" />
+		</path> -->
+
+		<path d="M -10 -3, L 10 -3, L 0 -25 Z" stroke="red" fill="yellow">
+			<animateMotion rotate="auto" dur="3s" fill="freeze" repeatCount="indefinite">
+				<mpath xlink:href="#cubicCurve"/>
+			</animateMotion>
+		</path>
+	</svg>
+</body>
+</html>
