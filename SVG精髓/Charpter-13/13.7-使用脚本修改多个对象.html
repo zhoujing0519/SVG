@@ -32,6 +32,9 @@
 </head>
 <body>
 	<svg onload="init();" width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+		<!-- 事件捕获器 -->
+		<rect id="eventCatcher" x="0" y="0" width="400" height="300" fill="none" stroke="none" pointer-events="visible"/>
+
 		<defs>
 			<path id="shirt-outline" d="M -6 -30, -32 -19, -25.5 -13, -22 -14, -22 30, 23 30, 23 -14, 26.5 -13, 33 -19, 7 -30, A 6.5 6 0 0 1 -6 -30 Z" />
 		</defs>
@@ -95,6 +98,8 @@
 		}
 
 		transformShirt();
+
+		document.getElementById('eventCatcher').addEventListener('mouseup', endColorDrag, false);
 	}
 
 	function clickButton(e){

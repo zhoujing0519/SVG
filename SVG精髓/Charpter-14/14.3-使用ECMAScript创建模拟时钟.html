@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Scripted Analog Clock</title>
+</head>
+<body>
+	<svg id="clock" onload="init();" width="250" height="250" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+		<title>Scripted Analog Clock</title>
+	</svg>
+</body>
+<script type="text/javascript">
+// Functions............................................................................
+	var secPerMinute = 60,
+		secPerHour = 60*60,
+		secPer12Hours = 60*60*12;
+
+	function init(){
+		var doc = document,
+			clock = doc.getElementById('clock'),
+			svgns = clock.namespaceURI,
+
+			// 表盘
+			face,
+			ticks,
+			tickMark,
+
+			// 指针
+			hands,
+			hourHand,
+			minuteHand,
+			secondHand,
+
+			// 中心轴
+			knob,
+
+			//基础旋转角度
+			secondTransform,
+			minuteTransform,
+			hourTransform;
+
+		clock.suspendRedraw(1000);
+
+		// 创建表盘
+		face = doc.createElementNS(svgns, 'circle');
+
+		face.cx.baseVal.value = 125;
+		face.cy.baseVal.value = 125;
+		face.r.baseVal.value = 100;
+		face.style.cssText = 'fill: white; stroke: black;';
+		clock.appendChild(face);
+
+		// 创建小时标识的组
+		ticks = clock.appendChild(doc.createElementNS(svgns, 'g'));
+		ticks.setAttribute('transform', 'translate(125, 125)');
+
+		// 创建小时标识
+		for(var i = 1; i <= 12; i++){
+			tickMark = doc.createElementNS(svgns, 'path');
+			tickMark.setAttribute('d', 'M 95 0, 100 -5, 100 5 Z');
+			tickMark.setAttribute('transform', 'rotate('+ (30*i) +')');
+			ticks.appendChild(tickMark);
+		}
+
+		// 创建指针
+		hands = clock.appendChild(doc.createElementNS(svgns, 'g'));
+		hands.style.cssText = 'stroke: black; stroke-width: 5px; stroke-linecap: round;';
+
+		// 创建时针
+		hourHand = hands.appendChild(doc.createElementNS(svgns, 'path'));
+		hourHand.id = 'hour';
+		hourHand.setAttribute('d', 'M 125 125, L 125 75');
+		hourHand.setAttribute('transform', 'rotate(0, 125, 125)');
+
+		// 创建分针
+		minuteHand = hands.appendChild(doc.createElementNS(svgns, 'path'));
+		minuteHand.id = 'minute';
+		minuteHand.setAttribute('d', 'M 125 125, L 125 45');
+		minuteHand.setAttribute('transform', 'rotate(0, 125, 125)');
+
+		// 创建秒针
+		secondHand = hands.appendChild(doc.createElementNS(svgns, 'path'));
+		secondHand.id = 'second';
+		secondHand.setAttribute('d', 'M 125 125, L 125 30');
+		secondHand.setAttribute('transform', 'rotate(0, 125, 125)');
+		secondHand.style.cssText = 'stroke: red; stroke-width: 2px;';
+
+		// 创建轴
+		knob = doc.createElementNS(svgns, 'circle');
+		knob.setAttribute('cx', '125');
+		knob.setAttribute('cy', '125');
+		knob.setAttribute('r', '6');
+		knob.style.setProperty('fill', '#333', null);
+		clock.appendChild(knob);
+
+		clock.unsuspendRedrawAll();
+
+		animate();
+
+		function animate(){
+			secondTransform = secondHand.transform.baseVal.getItem(0);
+			minuteTransform = minuteHand.transform.baseVal.getItem(0);
+			hourTransform = hourHand.transform.baseVal.getItem(0);
+
+			updateClock();
+		}
+
+		function updateClock(){
+			// 获取系统时间
+			var date = new Date(),
+				time = date.getMilliseconds() / 1000 + 
+					   date.getSeconds() +
+					   date.getMinutes()*60 +
+					   date.getHours()*60*60,
+
+				// 旋转角度
+				s = 360*(time % secPerMinute) / secPerMinute,
+				m = 360*(time % secPerHour) / secPerHour,
+				h = 360*(time % secPer12Hours) / secPer12Hours;
+
+			// 使用SVGTransform.setRotate(angle, cx, cy)来更新旋转角度
+			secondTransform.setRotate(s, 125, 125);
+			minuteTransform.setRotate(m, 125, 125);
+			hourTransform.setRotate(h, 125, 125);
+
+			window.requestAnimationFrame(updateClock);
+		}
+	}
+
+</script>
+</html>
