@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.starStyle{
+			fill: #008000;
+			stroke: #008000;
+			animation-name: starAnim;
+			animation-duration: 2s;
+			animation-iteration-count: 4;
+			animation-direction: alternate;
+			animation-timing-function: ease;
+			animation-play-state: running;
+		}
+
+		@keyframes starAnim{
+			0%{
+				fill-opacity: 1.0;
+				stroke-width: 0;
+			}
+			100%{
+				fill-opacity: 0;
+				stroke-width: 2;
+			}
+		}
+	</style>
+</head>
+<body>
+	<svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<g id="starDef">
+				<path d="M 38.042 -12.361, 9.045 -12.944, -0.000 -40.000, -9.405 -12.944, -38.042 -12.361, -15.217 4.944, -23.511 32.361, 0.000 16.000, 23.511 32.361, 15.217 4.944 Z"/>
+			</g>
+		</defs>
+
+		<use xlink:href="#starDef" id="star" class="starStyle" transform="translate(100, 100)"/>
+	</svg>
+</body>
+</html>

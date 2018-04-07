@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<svg width="800" height="800" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+		<title>Symbols vs. groups</title>
+		<desc>Use</desc>
+
+		<defs>
+			<g id="octagon" style="stroke: black;" stoke="black">
+				<desc>Octagon as group</desc>
+				<polygon points="36 25, 25 36, 11 36, 0 25, 0 11, 11 0, 25 0, 36 11"/>
+			</g>
+
+			<symbol id="sym-octagon" stroke="black" preserveAspectRatio="xMidYmid slice" viewBox="0 0 40 40">
+				<desc>Octagon as symbol</desc>
+				<polygon points="36 25, 25 36, 11 36, 0 25, 0 11, 11 0, 25 0, 36 11"/>
+			</symbol>
+		</defs>
+			
+		<g fill="none" stroke="gray">
+			<rect x="40" y="40" width="30" height="30" />
+			<rect x="80" y="40" width="40" height="60" />
+			<rect x="40" y="110" width="30" height="30" />
+			<rect x="80" y="110" width="40" height="60" />
+		</g>
+
+		<use xlink:href="#octagon" x="40" y="40" width="30" height="30" fill="#c00" />
+		<use xlink:href="#octagon" x="80" y="40" width="40" height="60" fill="#cc0" />
+		<use xlink:href="#sym-octagon" x="40" y="110" width="30" height="30" fill="#cfc" />
+		<use xlink:href="#sym-octagon" x="80" y="110" width="40" height="60" fill="#699" />
+	</svg>
+</body>
+</html>

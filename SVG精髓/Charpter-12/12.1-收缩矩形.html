@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+		<rect x="10" y="10" width="200" height="20" fill="none" stroke="black">
+			<animate attributeName="width" attributeType="XML" from="200" to="20" begin="0s" dur="3s" fill="freeze" />
+		</rect>
+
+		<rect x="10" y="40" width="200" height="20" fill="green" fill-opacity="0.25" stroke="black">
+			<animate attributeName="width" attributeType="XML" from="20" to="200" begin="0s" dur="3s" fill="freeze" />
+			<animate attributeName="height" attributeType="XML" from="20" to="150" begin="0s" dur="3s" fill="freeze" />
+			<animate attributeName="fill-opacity" attributeType="XML" from="0.25" to="1" begin="0s" dur="1.5s" fill="freeze" />
+			<animate attributeName="fill-opacity" attributeType="XML" from="1" to="0.25" begin="1.5s" dur="1.5s" fill="freeze" />
+		</rect>
+	</svg>
+</body>
+</html>
